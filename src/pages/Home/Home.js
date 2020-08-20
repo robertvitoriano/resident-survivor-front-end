@@ -6,7 +6,10 @@ import soup from "./../../assets/inventory-icons/Soup.png";
 import firstAid from "./../../assets/inventory-icons/red-cross.png";
 import water from "./../../assets/inventory-icons/bottledwater.png";
 import "./style.css";
-const Home = ({ history, match }) => {
+import { useHistory } from "react-router-dom";
+const Home = ({ match }) => {
+  
+  const history = useHistory()
   const refContainer = useRef(null);
   const [survivors, setSurvivors] = useState([]);
   const[userName,setUserName] =useState('');
@@ -213,7 +216,7 @@ const Home = ({ history, match }) => {
         />
         <button 
         className="flag-button"
-        data-testid="searchButton"
+          data-testid="searchButton"
         >
           Flag Survivor As Infected
         </button>

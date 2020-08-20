@@ -33,7 +33,6 @@ const Register = () => {
     function preventNegative() {
       if (ak47Total <0) {
         setAk47Total(ak47Total + 1);
-        console.log('hasClicked');
       }
       if (waterTotal <0) {
         setWaterTotal(waterTotal + 1);

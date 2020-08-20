@@ -1,9 +1,10 @@
+
 describe('Flags a survivor',()=>{
     it('Search for a survivor and flag him',()=>{
-      cy.visit("localhost:3000/9d337126-19cd-436c-80fa-cd8465e90c6d")
+      cy.visit("localhost:3000/6b3a018a-c237-488f-a83f-f3bc17222d42")
       
       cy.get('[data-testid="searchField"]')
-        .type("Mayara");
+        .type("Fabio Akita");
 
       cy.get('[data-testid="searchButton"]')
         .click();     

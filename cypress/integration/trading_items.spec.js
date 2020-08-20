@@ -1,12 +1,12 @@
 describe('Trade items with a survivor',()=>{
-    it('Should make a sucessful transaction between survivors',()=>{
-      cy.visit("localhost:3000/9d337126-19cd-436c-80fa-cd8465e90c6d")
+    it('Should search for a survivor and try to makem a trade',()=>{
+      cy.visit("localhost:3000/b81084e8-9799-48c8-afb0-afa9cfab7436")
       
       cy.get('[data-testid="tradeItemsLink"]')
         .click();
 
       cy.get('[data-testid="searchField"]')
-        .type("test10");
+        .type("Fabio Akita");
 
      cy.get('[data-testid="searchButton"]')
        .click();      

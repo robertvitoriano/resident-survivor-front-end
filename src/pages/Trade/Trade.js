@@ -5,7 +5,9 @@ import IconSoup from "./../../assets/inventory-icons/Soup.png";
 import IconFirstAid from "./../../assets/inventory-icons/red-cross.png";
 import IconWater from "./../../assets/inventory-icons/bottledwater.png";
 import api from "../../services/api";
-const Trade = ({ match, history }) => {
+import { useHistory } from "react-router-dom";
+const Trade = ({ match }) => {
+  const history = useHistory()
   const [survivors, setSurvivors] = useState([]);
   const [survivorToTrade, setSurvivorToTrade] = useState("");
   const survivorRef = useRef(null);
@@ -477,8 +479,8 @@ const Trade = ({ match, history }) => {
             setSurvivorToTrade(e.target.value);
           }}
           ref={refInput}
-          data-testid="searchForTrade"
-        />
+          data-testid="searchField"     
+         />
         <button
           style={{ fontWeight: "bold", fontSize: "20pt" }}
           className="search-trader-button"
