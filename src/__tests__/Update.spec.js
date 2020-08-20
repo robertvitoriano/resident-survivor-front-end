@@ -3,7 +3,10 @@ import {
   render,
   fireEvent,
   cleanup,
+  screen
 } from '@testing-library/react';
+import userEvent from "@testing-library/user-event";
+import "@testing-library/jest-dom/extend-expect";
 import Update from './../pages/Update/Update';
 
 describe('<Update/>', () => {
@@ -37,7 +40,8 @@ describe('<Update/>', () => {
     });
 
     it('clears the text field', () => {
-      expect(getByTestId('newLocationDisplay').value).toEqual('Current Position: (Longitude: a, Latitude: )');
+      expect(screen.getByText(/'Current Position: (Longitude: a, Latitude: )'/)).toBeInTheDocument();
+                                                              
     });
   });
 });

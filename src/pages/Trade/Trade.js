@@ -477,7 +477,7 @@ const Trade = ({ match, history }) => {
             setSurvivorToTrade(e.target.value);
           }}
           ref={refInput}
-          data-testid="searchField"
+          data-testid="searchForTrade"
         />
         <button
           style={{ fontWeight: "bold", fontSize: "20pt" }}
