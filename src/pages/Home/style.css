@@ -1,0 +1,248 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../assets/background-image/earth.jpg");
+  background-color: rgba(0,0,0);
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+.home-header {
+  background-color: #f7b200;
+  width: 100vw;
+  height: 6vh;
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.navbar {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-links {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  list-style: none;
+  height: 100%;
+}
+.navbar-link {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-weight:bold;
+  color:rgb(29, 27, 2)
+}
+a{
+  width:100%;
+  height: 100%;
+  text-align: center;
+  line-height: 50px;
+
+}
+.navbar-link:hover {
+  background-color: rgb(117, 106, 5);
+  font-weight: bold;
+  color:rgb(29, 27, 2);
+  cursor: pointer;
+}
+.flag-form {
+  margin-top: 20vh;
+}
+.search-field {
+  width: 40vw;
+  height: 6vh;
+  text-align: center;
+  position: relative;
+
+}
+
+.flag-button {
+  padding:1rem 2rem 1rem 2rem;
+  background-color: #f7b200;
+  font-family: "Orbitron", sans-serif;
+  cursor: pointer;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 1.8rem;
+  color: #493c1d;
+}
+.welcome-message{
+  position: absolute;
+  width:20vw;
+  top: 10%;
+  width: fit-content;
+  white-space: nowrap;
+  text-align: center;
+  left:50%;
+  display: flex;
+  justify-content: center;
+}
+
+.infection-bar {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.percentage-bar {
+  width: 80vw;
+  background-color: green;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+.infection-bar-info {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.infected-percentage {
+  width: 80vw;
+  height: 10vh;
+}
+.infected-percentage-number {
+  line-height: 5rem;
+  position: absolute;
+  right: .5rem;
+}
+.non-infected-users-percentage {
+  position: absolute;
+  right: 2vw;
+  top: 1.2vw;
+}
+.infection-bar-subtitles-container {
+  border: solid 6px rgba(156, 89, 100, 0.2);
+  width: 15rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 11.5rem;
+  position: relative;
+}
+
+.subtitles {
+  position:relative;
+  bottom: 16vh;
+  left:10vw;
+  color:white;
+  width: fit-content;
+}
+.subtitles-title{
+text-align: center;
+margin-bottom: 10px;
+    
+}
+.subtitle-boxes{
+   position: absolute;
+   width:fit-content;
+   left: 20px;
+ 
+}
+.subtitle-box {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+.non-infected-survivors-subtitle {
+  background-color: green;
+}
+.infected-survivors-subtitle {
+  background-color: red;
+}
+.subtitle-box-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position:relative;
+}
+.subtitle-description{
+    margin-left:13px;
+    font-weight: bold;
+}
+
+.reports {
+  color: white;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  bottom: 12vh;
+}
+.average-quantity-of-each-item {
+  width: 80vw;
+  height: fit-content;
+  justify-content: flex-end;
+}
+
+.report-row {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 80vw;
+  justify-content: space-evenly;
+}
+
+.items-info-container {
+  text-align: center;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+}
+.items-info-grid {
+  display: grid;
+  grid-template-columns: 30rem 30rem;
+  grid-gap: 0s.6rem;
+  margin-left: 8vw;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+}
+.item-info-icon {
+  width: 90px;
+}
+
+.item-info-icon-water {
+  width: 50px;
+}
+
+.item-info-icon-ak47 {
+  width: 130px;
+}
+
+.average-quantity-per-survivor {
+  font-size: 30pt;
+}
+.item-title-and-image-water {
+  position: relative;
+  right: 25px;
+}
+.average-quantity-per-survivor-water {
+  position: absolute;
+  left: 18rem;
+}
+
+
+
+
+
+
+

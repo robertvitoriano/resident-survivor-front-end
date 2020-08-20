@@ -1,0 +1,146 @@
+.update-container{
+    width:100vw;
+    height:100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/background-image/map.jpg" );
+    background-size: cover;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+
+
+    
+}
+
+.search-id-form{
+    height:3rem;    
+    position:relative;
+}
+.search-id-button{
+    background-color:rgb(148, 109, 12);
+    padding:1rem 2rem 1rem 2rem;
+    position:absolute;
+    left:42vw;  
+    bottom:1vh;
+    font-size: 1.5rem;
+
+}
+
+.update-title{
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    position: absolute;
+    top:12%;
+    color:rgb(204, 150, 13);
+    text-shadow: 3px 3px 3px  rgb(73, 60, 29);
+
+}
+.update-area{
+    height:80%;
+    width:80%;
+
+}
+.translucent{
+    height:80%;
+    width:80%;
+    background-color: cornsilk;
+    position:absolute;
+    opacity: 8%;
+    top:19%;
+
+
+}
+.update-content{
+    top:19%;
+    height:80%;
+    width:80%;
+    background-color:"green";
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+
+.profile-info-container{
+    height: 90%;
+    width:30%;
+    left: 2.5%;
+    background-color: #d69b05;
+    box-sizing: border-box;
+    border:rgb(153, 152, 152) solid 6px;
+    border-radius: 6px;
+}
+.location-map-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width:800px;
+    height:600px;
+    justify-content: center;
+}
+.location-map{
+    width:700px;
+    height:500px;
+    background-image: url("../../assets/united-states-map.jpg");
+    background-size:cover ;
+    box-sizing: border-box;
+    border:gray solid 6px;
+    border-radius: 6px;
+    
+ 
+}
+.current-location-displayer{
+    position: absolute;
+    top:0;
+    color:rgb(204, 150, 13);
+    text-shadow: 3px 3px 3px  rgb(73, 60, 29);
+    
+}
+
+
+.profile-box{
+    background-color: darkgoldenrod;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: dimgray  solid 1.5px;
+    border-top: dimgray  solid 1.5px;
+    border-left: dimgray  solid 3px;
+    border-right: dimgray  solid 3px;
+    height:calc(25% - 3px);
+    flex-direction: column;
+}
+
+.profile-id-input{
+    width: 15vw;
+    margin-top: 1rem;
+
+}
+.profile-location-box{
+    position:relative;
+}
+.update-location-form{
+    display: flex;
+    position:relative;
+    
+
+}
+.update-location-input{
+   border:dimgray  solid 4px;
+   box-sizing: border-box;
+}
+.update-location-input[type="text"] {
+    font-size: 1.5rem;
+  }
+
+.update-location-button{
+    background-color:rgb(148, 109, 12);
+    padding:0.5rem 1rem 0.5rem 1rem;
+    position:absolute;
+    top:3.4rem;
+    font-size: 1rem;
+}
