@@ -10,7 +10,6 @@ import "@testing-library/jest-dom/extend-expect";
 import Update from './../pages/Update/Update';
 
 describe('<Update/>', () => {
-  let getByTestId;
 
   afterEach(cleanup);
 
@@ -37,11 +36,8 @@ describe('<Update/>', () => {
       );
 
       fireEvent.click(getByTestId('updateButton'));
-    });
-
-    it('clears the text field', () => {
       expect(screen.getByText(/'Current Position: (Longitude: a, Latitude: )'/)).toBeInTheDocument();
-                                                              
+
     });
   });
 });
