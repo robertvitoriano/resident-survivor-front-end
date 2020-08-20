@@ -7,6 +7,8 @@ import {
 } from '@testing-library/react';
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
+import {MemoryRouter} from 'react-router-dom';
+Memo
 import Update from './../pages/Update/Update';
 
 describe('<Update/>', () => {
