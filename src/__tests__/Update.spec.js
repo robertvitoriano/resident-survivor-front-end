@@ -16,13 +16,13 @@ describe('<Update/>', () => {
 
   describe('clicking the update location button', () => {
     beforeEach(() => {
-      ({ getByTestId } = render(<Update />));
+      ({ getByTestId,getByText } = render(<Update />));
 
       fireEvent.change(
         getByTestId('searchField'),
         {
           target: {
-            value: 'bc24a62d-14cb-4a9e-a3aa-0edd5b1ac71a',
+            value: '399187d9-6ad3-4455-b387-2c9f00829a0c',
           },
         },
       );
