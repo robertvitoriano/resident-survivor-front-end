@@ -443,9 +443,7 @@ const Trade = ({ match }) => {
     setDisplayTradingWarning(false);
   }
 
-  console.log("survivor items to pick: " + survivorItemsToPick);
-  console.log("User items to pay: " + userItemsToPay);
-  console.log("Survivor to Trade: " + survivorRef.current);
+
 
   async function handleTrade(e) {
     e.preventDefault();
