@@ -8,7 +8,7 @@ import api from "../../services/api";
 import { useHistory } from "react-router-dom";
 
 const Trade = ({ match }) => {
-  
+
   const history = useHistory()
   const [survivors, setSurvivors] = useState([]);
   const [survivorToTrade, setSurvivorToTrade] = useState("");
@@ -50,19 +50,26 @@ const Trade = ({ match }) => {
 
   //Fetch all Survivors
   useEffect(() => {
+
     async function loadSurvivors() {
+
       const response = await api.get("/people.json");
       setSurvivors(response.data);
+
     }
+
     loadSurvivors();
+
   }, []);
 
   useEffect(() => {
     async function setUserInfo() {
+
       const response = await api.get(
         "/people/" + match.params.id + "/properties.json"
       );
       response.data.map((resource) => {
+        
         if (resource.item.name === "Campbell Soup") {
           userMaxSoupQuantity.current = resource.quantity;
         }
