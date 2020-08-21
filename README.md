@@ -1,4 +1,4 @@
-Backend Test  Codeminer
+Front End Test  Codeminer  - Robert da Silva Vitoriano
 
 
 In order to run this project, you should first add a mongodb connection string into the  files .env and test.env , which can be found inside the 'config' folder. After that you should run:
