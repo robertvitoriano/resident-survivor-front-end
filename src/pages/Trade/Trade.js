@@ -127,7 +127,7 @@ const Trade = ({ match }) => {
   useEffect(() => {
 
     function setSurvivorItemsInformationToPick() {
-      
+
       let survivorItems = "";
       if (survivorAK47Quantity > 0) {
         survivorItems += "AK47:" + survivorAK47Quantity + ";";
@@ -241,30 +241,41 @@ const Trade = ({ match }) => {
   function handleSurvivorSoupIncrementation(e) {
     e.preventDefault();
     if (!wasSurvivorFound) {
+
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorSoupQuantity <= survivorMaxSoupQuantity.current) {
+
       if (survivorSoupQuantity === survivorMaxSoupQuantity.current) {
+
         setSurvivorSoupQuantity(survivorMaxSoupQuantity.current);
       } else if (survivorMaxSoupQuantity.current > 0) {
+
         setSurvivorSoupQuantity(survivorSoupQuantity + 1);
         setNeededPoints(neededPoints + 12);
         setSurvivorItemCounter(survivorItemsCounter + 1);
+
       }
     }
   }
   function handleSurvivorSoupDecrementation(e) {
+
     e.preventDefault();
+
     if (!wasSurvivorFound) {
+
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else {
+
       if (survivorSoupQuantity > 0) {
+
         setSurvivorSoupQuantity(survivorSoupQuantity - 1);
         setNeededPoints(neededPoints - 12);
         setSurvivorItemCounter(survivorItemsCounter - 1);
 
       } else {
+
         setSurvivorSoupQuantity(0);
       }
     }
@@ -272,17 +283,23 @@ const Trade = ({ match }) => {
 
 
   function handleSurvivorAidIncrementation(e) {
+
     e.preventDefault();
     if (!wasSurvivorFound) {
+
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorAidQuantity <= survivorMaxAidQuantity.current) {
+
       if (survivorAidQuantity === survivorMaxAidQuantity.current) {
+
         setSurvivorAidQuantity(survivorMaxAidQuantity.current);
       } else if (survivorMaxAidQuantity.current > 0) {
+
         setSurvivorAidQuantity(survivorAidQuantity + 1);
         setNeededPoints(neededPoints + 10);
         setSurvivorItemCounter(survivorItemsCounter + 1);
+
       }
     }
   }
@@ -290,25 +307,35 @@ const Trade = ({ match }) => {
   function handleSurvivorAidDecrementation(e) {
     e.preventDefault();
     if (!wasSurvivorFound) {
+
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorAidQuantity > 0) {
+
       setSurvivorAidQuantity(survivorAidQuantity - 1);
       setNeededPoints(neededPoints - 10);
       setSurvivorItemCounter(survivorItemsCounter - 1);
+
     } else {
+
       setSurvivorAidQuantity(0);
+
     }
   }
   function handleSurvivorWaterIncrementation(e) {
     e.preventDefault();
     if (!wasSurvivorFound) {
+
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorWaterQuantity <= survivorMaxWaterQuantity.current) {
+
       if (survivorWaterQuantity === survivorMaxWaterQuantity.current) {
+
         setSurvivorWaterQuantity(survivorMaxWaterQuantity.current);
+
       } else if (survivorMaxWaterQuantity.current > 0) {
+
         setSurvivorWaterQuantity(survivorWaterQuantity + 1);
         setNeededPoints(neededPoints + 14);
         setSurvivorItemCounter(survivorItemsCounter + 1);
@@ -317,15 +344,20 @@ const Trade = ({ match }) => {
   }
 
   function handleSurvivorWaterDecrementation(e) {
+
     e.preventDefault();
     if (!wasSurvivorFound) {
+
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorWaterQuantity > 0) {
+
       setSurvivorWaterQuantity(survivorWaterQuantity - 1);
       setNeededPoints(neededPoints - 14);
       setSurvivorItemCounter(survivorItemsCounter - 1);
+
     } else {
+
       setSurvivorWaterQuantity(0);
     }
   }
@@ -333,15 +365,20 @@ const Trade = ({ match }) => {
   function handleUserAK47Incrementation(e) {
     e.preventDefault();
     if (!wasSurvivorFound) {
+
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (userAK47Quantity <= userMaxAK47Quantity.current) {
+
       if (userAK47Quantity === userMaxAK47Quantity.current) {
+
         setUserAK47Quantity(userMaxAK47Quantity.current);
       } else if (userMaxAK47Quantity.current > 0) {
+
         setUserAK47Quantity(userAK47Quantity + 1);
         setUserPoints(userPoints + 8);
         setUserItemCounter(userItemsCounter + 1);
+        
       }
     }
   }
