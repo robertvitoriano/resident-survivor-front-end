@@ -8,8 +8,7 @@ import api from "../../services/api";
 import { useHistory } from "react-router-dom";
 
 const Trade = ({ match }) => {
-
-  const history = useHistory()
+  const history = useHistory();
   const [survivors, setSurvivors] = useState([]);
   const [survivorToTrade, setSurvivorToTrade] = useState("");
   const survivorRef = useRef(null);
@@ -50,26 +49,20 @@ const Trade = ({ match }) => {
 
   //Fetch all Survivors
   useEffect(() => {
-
     async function loadSurvivors() {
-
       const response = await api.get("/people.json");
       setSurvivors(response.data);
-
     }
 
     loadSurvivors();
-
   }, []);
 
   useEffect(() => {
     async function setUserInfo() {
-
       const response = await api.get(
         "/people/" + match.params.id + "/properties.json"
       );
       response.data.map((resource) => {
-
         if (resource.item.name === "Campbell Soup") {
           userMaxSoupQuantity.current = resource.quantity;
         }
@@ -88,9 +81,7 @@ const Trade = ({ match }) => {
   }, [match.params.id]);
 
   useEffect(() => {
-
     function handleTradePossibility() {
-
       if (userPoints === neededPoints && userPoints !== 0) {
         setIsTradePossible(true);
         setDisplayTradingWarning(true);
@@ -100,7 +91,6 @@ const Trade = ({ match }) => {
   }, [userPoints, neededPoints]);
 
   useEffect(() => {
-
     function setUserItemsInformationToPay() {
       let userItems = "";
       if (userAK47Quantity > 0) {
@@ -118,16 +108,20 @@ const Trade = ({ match }) => {
       if (userItemsCounter > 1) {
         userItems = userItems.substring(0, userItems.length - 1);
       }
-      setUserItemsToPay(userItems)
+      setUserItemsToPay(userItems);
     }
     setUserItemsInformationToPay();
-  }, [userAK47Quantity, userAidQuantity, userItemsCounter, userItemsToPay, userSoupQuantity, userWaterQuantity])
-
+  }, [
+    userAK47Quantity,
+    userAidQuantity,
+    userItemsCounter,
+    userItemsToPay,
+    userSoupQuantity,
+    userWaterQuantity,
+  ]);
 
   useEffect(() => {
-
     function setSurvivorItemsInformationToPick() {
-
       let survivorItems = "";
       if (survivorAK47Quantity > 0) {
         survivorItems += "AK47:" + survivorAK47Quantity + ";";
@@ -146,12 +140,17 @@ const Trade = ({ match }) => {
       }
       setSurvivorItemsToPick(survivorItems);
     }
-    setSurvivorItemsInformationToPick()
-  }, [survivorAK47Quantity, survivorAidQuantity, survivorItemsCounter, survivorItemsToPick, survivorSoupQuantity, survivorWaterQuantity])
-
+    setSurvivorItemsInformationToPick();
+  }, [
+    survivorAK47Quantity,
+    survivorAidQuantity,
+    survivorItemsCounter,
+    survivorItemsToPick,
+    survivorSoupQuantity,
+    survivorWaterQuantity,
+  ]);
 
   async function handleSurvivorSearch(e) {
-
     e.preventDefault();
 
     const queriedSurvivor = survivors.filter(
@@ -167,16 +166,12 @@ const Trade = ({ match }) => {
         );
         const id = splitLocationString[1];
         setSurvivorId(id);
-        const response = await api.get(
-          "/people/" + id + "/properties.json"
-        );
-        if(response.status ===200){
+        const response = await api.get("/people/" + id + "/properties.json");
+        if (response.status === 200) {
           setWasSurvivorFound(true);
         }
-        
 
         response.data.map((resource) => {
-
           setWasSurvivorFound(true);
           if (resource.item.name === "Campbell Soup") {
             survivorMaxSoupQuantity.current = resource.quantity;
@@ -196,7 +191,6 @@ const Trade = ({ match }) => {
         refInput.current.focus();
       }
     } catch (e) {
-
       console.log(e);
       alert("Survivor not Found!");
       setSurvivorToTrade("");
@@ -205,7 +199,6 @@ const Trade = ({ match }) => {
   }
 
   function handleSurvivorAK47Incrementation(e) {
-
     e.preventDefault();
 
     if (!wasSurvivorFound) {
@@ -222,7 +215,6 @@ const Trade = ({ match }) => {
     }
   }
 
-
   function handleSurvivorAK47Decrementation(e) {
     e.preventDefault();
     if (!wasSurvivorFound) {
@@ -232,7 +224,6 @@ const Trade = ({ match }) => {
       setSurvivorAK47Quantity(survivorAK47Quantity - 1);
       setNeededPoints(neededPoints - 8);
       setSurvivorItemCounter(survivorItemsCounter - 1);
-
     } else {
       setSurvivorAK47Quantity(0);
     }
@@ -241,65 +232,47 @@ const Trade = ({ match }) => {
   function handleSurvivorSoupIncrementation(e) {
     e.preventDefault();
     if (!wasSurvivorFound) {
-
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorSoupQuantity <= survivorMaxSoupQuantity.current) {
-
       if (survivorSoupQuantity === survivorMaxSoupQuantity.current) {
-
         setSurvivorSoupQuantity(survivorMaxSoupQuantity.current);
       } else if (survivorMaxSoupQuantity.current > 0) {
-
         setSurvivorSoupQuantity(survivorSoupQuantity + 1);
         setNeededPoints(neededPoints + 12);
         setSurvivorItemCounter(survivorItemsCounter + 1);
-
       }
     }
   }
   function handleSurvivorSoupDecrementation(e) {
-
     e.preventDefault();
 
     if (!wasSurvivorFound) {
-
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else {
-
       if (survivorSoupQuantity > 0) {
-
         setSurvivorSoupQuantity(survivorSoupQuantity - 1);
         setNeededPoints(neededPoints - 12);
         setSurvivorItemCounter(survivorItemsCounter - 1);
-
       } else {
-
         setSurvivorSoupQuantity(0);
       }
     }
   }
 
-
   function handleSurvivorAidIncrementation(e) {
-
     e.preventDefault();
     if (!wasSurvivorFound) {
-
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorAidQuantity <= survivorMaxAidQuantity.current) {
-
       if (survivorAidQuantity === survivorMaxAidQuantity.current) {
-
         setSurvivorAidQuantity(survivorMaxAidQuantity.current);
       } else if (survivorMaxAidQuantity.current > 0) {
-
         setSurvivorAidQuantity(survivorAidQuantity + 1);
         setNeededPoints(neededPoints + 10);
         setSurvivorItemCounter(survivorItemsCounter + 1);
-
       }
     }
   }
@@ -307,35 +280,25 @@ const Trade = ({ match }) => {
   function handleSurvivorAidDecrementation(e) {
     e.preventDefault();
     if (!wasSurvivorFound) {
-
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorAidQuantity > 0) {
-
       setSurvivorAidQuantity(survivorAidQuantity - 1);
       setNeededPoints(neededPoints - 10);
       setSurvivorItemCounter(survivorItemsCounter - 1);
-
     } else {
-
       setSurvivorAidQuantity(0);
-
     }
   }
   function handleSurvivorWaterIncrementation(e) {
     e.preventDefault();
     if (!wasSurvivorFound) {
-
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorWaterQuantity <= survivorMaxWaterQuantity.current) {
-
       if (survivorWaterQuantity === survivorMaxWaterQuantity.current) {
-
         setSurvivorWaterQuantity(survivorMaxWaterQuantity.current);
-
       } else if (survivorMaxWaterQuantity.current > 0) {
-
         setSurvivorWaterQuantity(survivorWaterQuantity + 1);
         setNeededPoints(neededPoints + 14);
         setSurvivorItemCounter(survivorItemsCounter + 1);
@@ -344,20 +307,15 @@ const Trade = ({ match }) => {
   }
 
   function handleSurvivorWaterDecrementation(e) {
-
     e.preventDefault();
     if (!wasSurvivorFound) {
-
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (survivorWaterQuantity > 0) {
-
       setSurvivorWaterQuantity(survivorWaterQuantity - 1);
       setNeededPoints(neededPoints - 14);
       setSurvivorItemCounter(survivorItemsCounter - 1);
-
     } else {
-
       setSurvivorWaterQuantity(0);
     }
   }
@@ -365,24 +323,18 @@ const Trade = ({ match }) => {
   function handleUserAK47Incrementation(e) {
     e.preventDefault();
     if (!wasSurvivorFound) {
-
       alert("You Should Search for a survivor first");
       refInput.current.focus();
     } else if (userAK47Quantity <= userMaxAK47Quantity.current) {
-
       if (userAK47Quantity === userMaxAK47Quantity.current) {
-
         setUserAK47Quantity(userMaxAK47Quantity.current);
       } else if (userMaxAK47Quantity.current > 0) {
-
         setUserAK47Quantity(userAK47Quantity + 1);
         setUserPoints(userPoints + 8);
         setUserItemCounter(userItemsCounter + 1);
-        
       }
     }
   }
-
 
   function handleUserAK47Decrementation(e) {
     e.preventDefault();
@@ -393,7 +345,6 @@ const Trade = ({ match }) => {
       setUserAK47Quantity(userAK47Quantity - 1);
       setUserPoints(userPoints - 8);
       setUserItemCounter(userItemsCounter - 1);
-
     } else {
       setUserAK47Quantity(0);
     }
@@ -492,12 +443,11 @@ const Trade = ({ match }) => {
     setDisplayTradingWarning(false);
   }
 
-  console.log("survivor items to pick: " + survivorItemsToPick)
+  console.log("survivor items to pick: " + survivorItemsToPick);
   console.log("User items to pay: " + userItemsToPay);
-  console.log("Survivor to Trade: " + survivorRef.current)
+  console.log("Survivor to Trade: " + survivorRef.current);
 
   async function handleTrade(e) {
-
     e.preventDefault();
 
     const config = {
@@ -510,13 +460,16 @@ const Trade = ({ match }) => {
     data.append("consumer[pick]", survivorItemsToPick);
     data.append("consumer[payment]", userItemsToPay);
     try {
-      await api.post("/people/" + survivorId + "/properties/trade_item.json", data, config);
-      alert('You traded successfully! You received: ' + survivorItemsToPick)
-
+      await api.post(
+        "/people/" + survivorId + "/properties/trade_item.json",
+        data,
+        config
+      );
+      alert("You traded successfully! You received: " + survivorItemsToPick);
     } catch (e) {
       console.log(e);
-      alert('An Error Ocurred');
-      history.push("/" + match.params.id + "/trade")
+      alert("An Error Ocurred");
+      history.push("/" + match.params.id + "/trade");
     }
   }
 
@@ -532,8 +485,8 @@ const Trade = ({ match }) => {
             setSurvivorToTrade(e.target.value);
           }}
           ref={refInput}
-          data-testid="searchField"     
-         />
+          data-testid="searchField"
+        />
         <button
           style={{ fontWeight: "bold", fontSize: "20pt" }}
           className="search-trader-button"
@@ -614,7 +567,6 @@ const Trade = ({ match }) => {
                     }}
                     href="#"
                     data-testid="increaseUserSoupQuantity"
-
                   >
                     +
                   </a>
@@ -711,8 +663,8 @@ const Trade = ({ match }) => {
                 <h1>Survivor Name: {survivorRef.current}</h1>
               </div>
             ) : (
-                ""
-              )}
+              ""
+            )}
 
             <div className="inventory trading-inventory">
               <div className="inventory-item water">
@@ -813,7 +765,6 @@ const Trade = ({ match }) => {
                       handleSurvivorAidIncrementation(e);
                     }}
                     data-testid="increaseSurvivorAidQuantity"
-
                   >
                     +
                   </a>
@@ -857,12 +808,15 @@ const Trade = ({ match }) => {
             </div>
           </div>
         </div>
-        <a className="register-button trade-button"
-          onClick={e => { handleTrade(e) }}
+        <a
+          className="register-button trade-button"
+          onClick={(e) => {
+            handleTrade(e);
+          }}
           data-testid="tradeButton"
         >
-
-          Trade</a>
+          Trade
+        </a>
       </div>
       {displayTradingWarning ? (
         <div className="trade-warning-container">
@@ -883,8 +837,8 @@ const Trade = ({ match }) => {
           </div>
         </div>
       ) : (
-          ""
-        )}
+        ""
+      )}
     </div>
   );
 };
