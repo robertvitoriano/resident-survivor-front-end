@@ -69,7 +69,7 @@ const Trade = ({ match }) => {
         "/people/" + match.params.id + "/properties.json"
       );
       response.data.map((resource) => {
-        
+
         if (resource.item.name === "Campbell Soup") {
           userMaxSoupQuantity.current = resource.quantity;
         }
@@ -88,7 +88,9 @@ const Trade = ({ match }) => {
   }, [match.params.id]);
 
   useEffect(() => {
+
     function handleTradePossibility() {
+
       if (userPoints === neededPoints && userPoints !== 0) {
         setIsTradePossible(true);
         setDisplayTradingWarning(true);
@@ -98,6 +100,7 @@ const Trade = ({ match }) => {
   }, [userPoints, neededPoints]);
 
   useEffect(() => {
+
     function setUserItemsInformationToPay() {
       let userItems = "";
       if (userAK47Quantity > 0) {
@@ -122,7 +125,9 @@ const Trade = ({ match }) => {
 
 
   useEffect(() => {
+
     function setSurvivorItemsInformationToPick() {
+      
       let survivorItems = "";
       if (survivorAK47Quantity > 0) {
         survivorItems += "AK47:" + survivorAK47Quantity + ";";
@@ -146,7 +151,9 @@ const Trade = ({ match }) => {
 
 
   async function handleSurvivorSearch(e) {
+
     e.preventDefault();
+
     const queriedSurvivor = survivors.filter(
       (survivor) => survivor.name === survivorToTrade
     );
@@ -169,6 +176,7 @@ const Trade = ({ match }) => {
         
 
         response.data.map((resource) => {
+
           setWasSurvivorFound(true);
           if (resource.item.name === "Campbell Soup") {
             survivorMaxSoupQuantity.current = resource.quantity;
@@ -188,6 +196,7 @@ const Trade = ({ match }) => {
         refInput.current.focus();
       }
     } catch (e) {
+
       console.log(e);
       alert("Survivor not Found!");
       setSurvivorToTrade("");
@@ -196,7 +205,9 @@ const Trade = ({ match }) => {
   }
 
   function handleSurvivorAK47Incrementation(e) {
+
     e.preventDefault();
+
     if (!wasSurvivorFound) {
       alert("You Should Search for a survivor first");
       refInput.current.focus();
