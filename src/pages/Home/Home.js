@@ -7,6 +7,7 @@ import firstAid from "./../../assets/inventory-icons/red-cross.png";
 import water from "./../../assets/inventory-icons/bottledwater.png";
 import "./style.css";
 import { useHistory } from "react-router-dom";
+import music from './../../assets/audio/Gothic Music - The Sealed Kingdom.mp3'
 const Home = ({ match }) => {
   
   const history = useHistory()
@@ -73,6 +74,8 @@ const Home = ({ match }) => {
   //fetching all survivors
   useEffect(() => {
     async function loadSurvivors() {
+      const snd = new Audio(music);
+      snd.play();
       const response = await api.get("/people.json");
 
       setSurvivors(response.data);

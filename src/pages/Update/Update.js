@@ -103,7 +103,7 @@ const Update = ({ match, history }) => {
         </form>
 
         <div className="update-title">
-            <h1>YOU CAN SET YOUR LOCATION BELOW BY EITHER TYIPING IT OR CLICKING ON THE MAP</h1>
+            <h1>YOU CAN SET YOUR LOCATION IN THE FORM BELOW</h1>
         </div>
         <div className="update-area">
 

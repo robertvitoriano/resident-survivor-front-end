@@ -1,12 +1,12 @@
-Front End Test  Codeminer  - Robert da Silva Vitoriano
+Front End Test  Codeminer42  - Robert da Silva Vitoriano
 
 
 In order to run this project, you should first run:
 
-### `yarn ` or `npm i`
+### `yarn start ` or `npm run start`
 
 The project runs with the command
-### `yarn dev ` or `npm run dev`
+### `yarn start ` or `npm run start`
 
 The project will run on:
 ### `port 3000`

@@ -3,10 +3,13 @@ import ak47 from "./../../assets/inventory-icons/weapon.png";
 import soup from "./../../assets/inventory-icons/Soup.png";
 import firstAid from "./../../assets/inventory-icons/red-cross.png";
 import water from "./../../assets/inventory-icons/bottledwater.png";
+import soundEffect from './../../assets/audio/click_001.ogg'
 import "./style.css";
 import { useHistory } from "react-router-dom";
 import api from "../../services/api";
+
 const Register = () => {
+
   const history = useHistory();
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -20,10 +23,11 @@ const Register = () => {
   const [chosenItems, setChosenItems] = useState("");
   const [chosenItemsQuantity, setChosenItemsQuantity] = useState("");
   const [itemsCounterState, setItemsCounterState] = useState('');
-  const ak47QuantityRef = useRef('')
-  const waterQuantityRef = useRef('')
-  const soupQuantityRef = useRef('')
-  const aidQuantityRef = useRef('')
+
+  const ak47QuantityRef = useRef('');
+  const waterQuantityRef = useRef('');
+  const soupQuantityRef = useRef('');
+  const aidQuantityRef = useRef('');
 
 
 
@@ -65,16 +69,21 @@ const Register = () => {
       setItemsCounterState(itemsCounterState + 1)
     }
     setItems();
+
   }, [ak47Total, waterTotal, soupTotal, aidTotal])
 
 
   function handleNext(e) {
     e.preventDefault();
     setWereCredentialsFilled(true);
+    const snd = new Audio(soundEffect);
+    snd.play();
   }
 
   async function handleFinish(e) {
     e.preventDefault();
+    const snd = new Audio(soundEffect);
+    snd.play();
     let locationFields = location.split(",");
     let longitude = locationFields[0];
     let latitude = locationFields[1];
