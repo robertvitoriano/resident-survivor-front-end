@@ -7,21 +7,24 @@ const Update = ({ match, history }) => {
     const [userName, setUserName] = useState('');
     const [userAge, setUserAge] = useState('');
     const [userGender, setUserGender] = useState('');
-    const [userPointFormatedLocation,SetUseserPointFormatedLocation] = useState('')
+    const [userPointFormatedLocation, SetUseserPointFormatedLocation] = useState('')
     const [userCurrentLongitude, setUserCurrentLongitude] = useState('');
     const [userCurrentLatitude, setUserCurrentLatitude] = useState('');
     const [userNewLongitude, setUserNewLatitude] = useState('');
     const [displayCurrentPosition, setDisplayCurrentPosition] = useState(false);
     const [userNewLocation, setUserNewLocation] = useState('');
     const inputRef = useRef(null);
-    const[mouseXCoordinate,mouseYCoordinate] = useState('');
-   useEffect(()=>{
-       document.querySelector('.map-area').addEventListener('mousemove', (e) => {
-           Xcoordinate.innerHTML = "Coordenada X: " + e.clientX;
-           Ycoordinate.innerHTML = "Coordenada Y: " + e.clientY;
-       })
+    const [mouseXCoordinate, setMouseXCoordinate] = useState(0);
+    const [mouseYCoordinate, setMouseYCoordinate] = useState(0);
 
-   },[])
+    //    useEffect(()=>{
+    //        document.querySelector('')
+    //        document.querySelector('.map-area').addEventListener('mousemove', (e) => {
+    //            Xcoordinate.innerHTML = "Coordenada X: " + e.clientX;
+    //            Ycoordinate.innerHTML = "Coordenada Y: " + e.clientY;
+    //        })
+
+    //    },[])
 
 
     async function handleIdSearch(e) {
@@ -52,45 +55,73 @@ const Update = ({ match, history }) => {
         setUserId('');
     }
 
-    async function handleUpdate(e){
+    async function handleUpdate(e) {
         e.preventDefault();
-        const stringArray =userNewLocation.trim().split(',');
+        const stringArray = userNewLocation.trim().split(',');
         setUserCurrentLongitude(stringArray[0])
         setUserCurrentLatitude(stringArray[1])
-        const userNewLocationFormated = 'POINT ('+stringArray[0]+' '+stringArray[1]+')';
+        const userNewLocationFormated = 'POINT (' + stringArray[0] + ' ' + stringArray[1] + ')';
         const config = {
             headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
+                "Content-Type": "application/x-www-form-urlencoded",
             },
-          };
-          const data = new FormData();
-          data.append("person[name]", userName);
-          data.append("person[age]", userAge);
-          data.append("person[gender]", userGender);
-          data.append("person[lonlat]", userNewLocationFormated);
-          try{
-             const response =  await api.patch("/people/"+match.params.id+".json", data, config);
-             if(response.status===200){
-                 alert('You successufully updated your location');
-             }
-         
-          }catch(e){
+        };
+        const data = new FormData();
+        data.append("person[name]", userName);
+        data.append("person[age]", userAge);
+        data.append("person[gender]", userGender);
+        data.append("person[lonlat]", userNewLocationFormated);
+        try {
+            const response = await api.patch("/people/" + match.params.id + ".json", data, config);
+            if (response.status === 200) {
+                alert('You successufully updated your location');
+            }
+
+        } catch (e) {
             console.log(e);
             alert('An Error Ocurred ! Try again, please!');
-     //       history.push("/" + match.params.id + "/update")
-          }
+            //       history.push("/" + match.params.id + "/update")
+        }
 
     }
-    function handleMouseHover(e){
-        e.preventDefault()
+    function handleMouseHover(e) {
+        e.preventDefault();
+        setDisplayCurrentPosition(true);
+        console.log("X: " + e.clientX);
+        console.log("Y: " + e.clientY)
+        if (e.clientX >= 947) {
+            // tamanho do mapa 662
+            //dividindo 662 por 180 obtenho 3.67
+            const actualPosition = ((e.clientX - 945) / 3.67).toFixed(2);
+            if (actualPosition > 180) {
+                setUserCurrentLongitude(180);
+            } else {
+                setUserCurrentLongitude(actualPosition);
+            }
 
-    }
-    function handleMouseLeaving(e){
-        e.preventDefault()
+        }
+
+
+  
+            // tamanho do mapa 662
+            //dividindo 662 por 180 obtenho 3.67
+            const actualPosition = ((e.clientX));
+            setUserCurrentLatitude(actualPosition);
+
         
+
+
+
+
+
+    }
+    function handleMouseLeaving(e) {
+        e.preventDefault()
+        setDisplayCurrentPosition(false);
+
     }
 
-    
+
     return (<div className="update-container">
         <form className="search-form" onSubmit={handleIdSearch}>
             <input
@@ -102,9 +133,9 @@ const Update = ({ match, history }) => {
                 ref={inputRef}
                 data-testid="searchField"
             />
-            <button 
-            className="search-id-button"
-            data-testid="searchButton"
+            <button
+                className="search-id-button"
+                data-testid="searchButton"
             ><h3>Search</h3></button>
         </form>
 
@@ -137,7 +168,7 @@ const Update = ({ match, history }) => {
                         </div>
                     </div>
                     <div className="profile-location-box profile-box">
-                        <h3 style={{ position: 'absolute', top: "3%",whiteSpace:'nowrap' }}>Enter your new location (longitude, latitude):</h3>
+                        <h3 style={{ position: 'absolute', top: "3%", whiteSpace: 'nowrap' }}>Enter your new location (longitude, latitude):</h3>
                         <div className="profile-field">
                             <form className="update-location-form">
                                 <input
@@ -148,13 +179,13 @@ const Update = ({ match, history }) => {
                                     data-testid="updateLocationField"
 
                                 />
-                                <button 
-                                className="update-location-button"
-                                onClick={e=>{handleUpdate(e)}}
-                                data-testid="updateButton"
+                                <button
+                                    className="update-location-button"
+                                    onClick={e => { handleUpdate(e) }}
+                                    data-testid="updateButton"
 
                                 ><h3>
-                                    update location
+                                        update location
                                     </h3>
                                 </button>
                             </form>
@@ -164,7 +195,7 @@ const Update = ({ match, history }) => {
                 </div>
                 <div className="location-map-container">
                     <h1 className="current-location-displayer"
-                     data-testid="newLocationDisplay"
+                        data-testid="newLocationDisplay"
                     >
                         Current Position:{displayCurrentPosition ?
                             (<span> (Longitude: {userCurrentLongitude},
@@ -172,7 +203,7 @@ const Update = ({ match, history }) => {
                             </span>) : ''}
                     </h1>
                     <div className="location-map"
-                        onMouseEnter={(e) => handleMouseHover(e)}
+                        onMouseMove={(e) => handleMouseHover(e)}
                         onMouseLeave={(e) => handleMouseLeaving(e)}
                     >
                     </div>
