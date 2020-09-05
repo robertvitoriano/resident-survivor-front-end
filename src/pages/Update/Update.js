@@ -15,7 +15,13 @@ const Update = ({ match, history }) => {
     const [userNewLocation, setUserNewLocation] = useState('');
     const inputRef = useRef(null);
     const[mouseXCoordinate,mouseYCoordinate] = useState('');
+   useEffect(()=>{
+       document.querySelector('.map-area').addEventListener('mousemove', (e) => {
+           Xcoordinate.innerHTML = "Coordenada X: " + e.clientX;
+           Ycoordinate.innerHTML = "Coordenada Y: " + e.clientY;
+       })
 
+   },[])
 
 
     async function handleIdSearch(e) {
