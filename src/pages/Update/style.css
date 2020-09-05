@@ -144,3 +144,11 @@
     top:3.4rem;
     font-size: 1rem;
 }
+
+.red-point{
+    display: flex;
+    background-color: red;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}

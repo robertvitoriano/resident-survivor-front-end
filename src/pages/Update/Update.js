@@ -16,6 +16,9 @@ const Update = ({ match, history }) => {
     const inputRef = useRef(null);
     const [mouseXCoordinate, setMouseXCoordinate] = useState(0);
     const [mouseYCoordinate, setMouseYCoordinate] = useState(0);
+    const [redPointXposition, setRedPointXPosition] = useState(0);
+    const [redPointYposition, setRedPointYPosition] = useState(0);
+
 
     //    useEffect(()=>{
     //        document.querySelector('')
@@ -103,15 +106,14 @@ const Update = ({ match, history }) => {
         if (e.clientY <= 767) {
             // tamanho do mapa em Y é 486
             //dividindo 486 por 90 obtenho 3.67
-            const actualPosition = ((e.clientY-280)/5.4 ).toFixed(2);
+            const actualPosition = ((e.clientY - 280) / 5.4).toFixed(2);
 
-           if(actualPosition>0){
-               setUserCurrentLatitude(actualPosition);
-           }
-           else if(actualPosition>90){
-               setUserCurrentLatitude(90);
-
-           }
+            if (actualPosition > 0) {
+                setUserCurrentLatitude(actualPosition);
+            }
+            else if (actualPosition > 90) {
+                setUserCurrentLatitude(90);
+            }
 
 
         }
@@ -131,95 +133,105 @@ const Update = ({ match, history }) => {
     }
 
 
-    return (<div className="update-container">
-        <form className="search-form" onSubmit={handleIdSearch}>
-            <input
-                type="text"
-                className="search-field search-id-input"
-                placeholder="Enter Your Id"
-                value={userId}
-                onChange={e => setUserId(e.target.value)}
-                ref={inputRef}
-                data-testid="searchField"
-            />
-            <button
-                className="search-id-button"
-                data-testid="searchButton"
-            ><h3>Search</h3></button>
-        </form>
+    return (<>
+        <div className="update-container">
+            <form className="search-form" onSubmit={handleIdSearch}>
+                <input
+                    type="text"
+                    className="search-field search-id-input"
+                    placeholder="Enter Your Id"
+                    value={userId}
+                    onChange={e => setUserId(e.target.value)}
+                    ref={inputRef}
+                    data-testid="searchField"
+                />
+                <button
+                    className="search-id-button"
+                    data-testid="searchButton"
+                ><h3>Search</h3></button>
+            </form>
 
-        <div className="update-title">
-            <h1>YOU CAN SET YOUR LOCATION IN THE FORM BELOW</h1>
-        </div>
-        <div className="update-area">
+            <div className="update-title">
+                <h1>YOU CAN SET YOUR LOCATION IN THE FORM BELOW</h1>
+            </div>
+            <div className="update-area">
 
-            <div className="translucent"></div>
-            <div className="update-content">
-                <div className="profile-info-container">
-                    <div className="profile-name-box profile-box">
-                        <h2>Name:</h2>
-                        <div className="profile-field">
-                            <h1>{userName}</h1>
+                <div className="translucent"></div>
+                <div className="update-content">
+                    <div className="profile-info-container">
+                        <div className="profile-name-box profile-box">
+                            <h2>Name:</h2>
+                            <div className="profile-field">
+                                <h1>{userName}</h1>
+                            </div>
+
                         </div>
+                        <div className="profile-age-box profile-box">
+                            <h2>Age:</h2>
+                            <div className="profile-field">
+                                <h1>{userAge}</h1>
+                            </div>
 
-                    </div>
-                    <div className="profile-age-box profile-box">
-                        <h2>Age:</h2>
-                        <div className="profile-field">
-                            <h1>{userAge}</h1>
                         </div>
-
-                    </div>
-                    <div className="profile-sex-box profile-box">
-                        <h2>Gender:</h2>
-                        <div className="profile-field">
-                            <h1>{userGender}</h1>
+                        <div className="profile-sex-box profile-box">
+                            <h2>Gender:</h2>
+                            <div className="profile-field">
+                                <h1>{userGender}</h1>
+                            </div>
                         </div>
-                    </div>
-                    <div className="profile-location-box profile-box">
-                        <h3 style={{ position: 'absolute', top: "3%", whiteSpace: 'nowrap' }}>Enter your new location (longitude, latitude):</h3>
-                        <div className="profile-field">
-                            <form className="update-location-form">
-                                <input
-                                    type="text"
-                                    className="update-location-input"
-                                    value={userNewLocation}
-                                    onChange={e => setUserNewLocation(e.target.value)}
-                                    data-testid="updateLocationField"
+                        <div className="profile-location-box profile-box">
+                            <h3 style={{ position: 'absolute', top: "3%", whiteSpace: 'nowrap' }}>Enter your new location (longitude, latitude):</h3>
+                            <div className="profile-field">
+                                <form className="update-location-form">
+                                    <input
+                                        type="text"
+                                        className="update-location-input"
+                                        value={userNewLocation}
+                                        onChange={e => setUserNewLocation(e.target.value)}
+                                        data-testid="updateLocationField"
 
-                                />
-                                <button
-                                    className="update-location-button"
-                                    onClick={e => { handleUpdate(e) }}
-                                    data-testid="updateButton"
+                                    />
+                                    <button
+                                        className="update-location-button"
+                                        onClick={e => { handleUpdate(e) }}
+                                        data-testid="updateButton"
 
-                                ><h3>
-                                        update location
+                                    ><h3>
+                                            update location
                                     </h3>
-                                </button>
-                            </form>
+                                    </button>
+                                </form>
 
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="location-map-container">
-                    <h1 className="current-location-displayer"
-                        data-testid="newLocationDisplay"
-                    >
-                        Current Position:{displayCurrentPosition ?
-                            (<span> (Longitude: {userCurrentLongitude},
+                    <div className="location-map-container">
+                        <h1 className="current-location-displayer"
+                            data-testid="newLocationDisplay"
+                        >
+                            Current Position:{displayCurrentPosition ?
+                                (<span> (Longitude: {userCurrentLongitude},
                           Latitude: {userCurrentLatitude})
-                            </span>) : ''}
-                    </h1>
-                    <div className="location-map"
-                        onMouseMove={(e) => handleMouseHover(e)}
-                        onMouseLeave={(e) => handleMouseLeaving(e)}
-                    >
+                                </span>) : ''}
+                        </h1>
+                        <div className="location-map"
+                            onMouseMove={(e) => handleMouseHover(e)}
+                            onMouseLeave={(e) => handleMouseLeaving(e)}
+                        >
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>)
+        <div className="red-point" style={{ 
+            display: "flex",
+            position:'absolute', 
+            bottom:"0px",
+            left:"0px"
+            }}></div>
+    </>
+
+    )
 }
 
 export default Update
