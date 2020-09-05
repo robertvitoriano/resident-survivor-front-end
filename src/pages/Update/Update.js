@@ -16,8 +16,9 @@ const Update = ({ match, history }) => {
     const inputRef = useRef(null);
     const [mouseXCoordinate, setMouseXCoordinate] = useState(0);
     const [mouseYCoordinate, setMouseYCoordinate] = useState(0);
-    const [redPointXposition, setRedPointXPosition] = useState(0);
-    const [redPointYposition, setRedPointYPosition] = useState(0);
+    const [redPointXposition, setRedPointXPosition] = useState(null);
+    const [redPointYposition, setRedPointYPosition] = useState(null);
+    const [showRedDot,setShowRedDot] = useState(false);
 
 
     //    useEffect(()=>{
@@ -118,18 +119,15 @@ const Update = ({ match, history }) => {
 
         }
 
-
-
-
-
-
-
-
+    }
+    function setRedPointPosition(e){
+        e.preventDefault();
+        setRedPointXPosition(e.clientX);
+        setRedPointYPosition(e.clientY);
     }
     function handleMouseLeaving(e) {
         e.preventDefault()
         setDisplayCurrentPosition(false);
-
     }
 
 
@@ -215,8 +213,18 @@ const Update = ({ match, history }) => {
                                 </span>) : ''}
                         </h1>
                         <div className="location-map"
-                            onMouseMove={(e) => handleMouseHover(e)}
+                            onMouseMove={(e) =>{
+                                 handleMouseHover(e);
+                                setShowRedDot(true);
+                                setRedPointPosition(e);
+
+                                }
+                            }
                             onMouseLeave={(e) => handleMouseLeaving(e)}
+                            onClick={(e)=>{
+                                setRedPointPosition(e);
+
+                            }}
                         >
                         </div>
                     </div>
@@ -224,10 +232,10 @@ const Update = ({ match, history }) => {
             </div>
         </div>
         <div className="red-point" style={{ 
-            display: `flex`,
+            display: `${showRedDot?'flex':'none'}`,
             position: `absolute`, 
-            bottom:`0px`,
-            left:`0px`
+            top: `${redPointYposition ? redPointYposition + 'px' : '0px'}`,
+            left: `${redPointXposition?redPointXposition+'px':'0px'}`
             }}></div>
     </>
 
