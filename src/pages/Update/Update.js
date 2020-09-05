@@ -224,10 +224,10 @@ const Update = ({ match, history }) => {
             </div>
         </div>
         <div className="red-point" style={{ 
-            display: "flex",
-            position:'absolute', 
-            bottom:"0px",
-            left:"0px"
+            display: `flex`,
+            position: `absolute`, 
+            bottom:`0px`,
+            left:`0px`
             }}></div>
     </>
 
