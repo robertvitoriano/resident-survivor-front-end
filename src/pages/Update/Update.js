@@ -19,6 +19,9 @@ const Update = ({ match, history }) => {
     const [redPointXposition, setRedPointXPosition] = useState(null);
     const [redPointYposition, setRedPointYPosition] = useState(null);
     const [showRedDot,setShowRedDot] = useState(false);
+    const [redDotChosenXposition,setRedDotChosenXPosition] = useState(null);
+    const [redDotChosenYposition, setRedDotChosenYPosition] = useState(null);
+
 
 
     //    useEffect(()=>{
@@ -131,6 +134,7 @@ const Update = ({ match, history }) => {
     }
 
 
+
     return (<>
         <div className="update-container">
             <form className="search-form" onSubmit={handleIdSearch}>
@@ -214,16 +218,18 @@ const Update = ({ match, history }) => {
                         </h1>
                         <div className="location-map"
                             onMouseMove={(e) =>{
-                                 handleMouseHover(e);
-                                setShowRedDot(true);
-                                setRedPointPosition(e);
+                                if(!redDotChosenYposition&& !redDotChosenXposition){
+                                    handleMouseHover(e);
+                                    setShowRedDot(true);
+                                    setRedPointPosition(e);
 
+                                }
                                 }
                             }
                             onMouseLeave={(e) => handleMouseLeaving(e)}
                             onClick={(e)=>{
-                                setRedPointPosition(e);
-
+                                setRedDotChosenXPosition(e.clientX);
+                                setRedDotChosenYPosition(e.clientY);
                             }}
                         >
                         </div>
