@@ -21,6 +21,9 @@ const Update = ({ match, history }) => {
     const [showRedDot,setShowRedDot] = useState(false);
     const [redDotChosenXposition,setRedDotChosenXPosition] = useState(null);
     const [redDotChosenYposition, setRedDotChosenYPosition] = useState(null);
+    const [actualXPosition,setActualXPosition] = useState(null);
+    const [actualYPosition, setActualYPosition] = useState(null);
+
 
 
 
@@ -99,23 +102,23 @@ const Update = ({ match, history }) => {
         if (e.clientX >= 947) {
             // tamanho do mapa em x é 662
             //dividindo 662 por 180 obtenho 3.67
-            const actualPosition = ((e.clientX - 945) / 3.67).toFixed(2);
-            if (actualPosition > 180) {
+            setActualXPosition(((e.clientX - 945) / 3.67).toFixed(2));
+            if (actualXPosition > 180) {
                 setUserCurrentLongitude(180);
             } else {
-                setUserCurrentLongitude(actualPosition);
+                setUserCurrentLongitude(actualXPosition);
             }
 
         }
         if (e.clientY <= 767) {
             // tamanho do mapa em Y é 486
             //dividindo 486 por 90 obtenho 3.67
-            const actualPosition = ((e.clientY - 280) / 5.4).toFixed(2);
+            setActualYPosition(((e.clientY - 280) / 5.4).toFixed(2));
 
-            if (actualPosition > 0) {
-                setUserCurrentLatitude(actualPosition);
+            if (actualYPosition > 0) {
+                setUserCurrentLatitude(actualYPosition);
             }
-            else if (actualPosition > 90) {
+            else if (actualYPosition > 90) {
                 setUserCurrentLatitude(90);
             }
 
