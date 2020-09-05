@@ -90,7 +90,7 @@ const Update = ({ match, history }) => {
         console.log("X: " + e.clientX);
         console.log("Y: " + e.clientY)
         if (e.clientX >= 947) {
-            // tamanho do mapa 662
+            // tamanho do mapa em x é 662
             //dividindo 662 por 180 obtenho 3.67
             const actualPosition = ((e.clientX - 945) / 3.67).toFixed(2);
             if (actualPosition > 180) {
@@ -100,15 +100,24 @@ const Update = ({ match, history }) => {
             }
 
         }
+        if (e.clientY <= 767) {
+            // tamanho do mapa em Y é 486
+            //dividindo 486 por 90 obtenho 3.67
+            const actualPosition = ((e.clientY-280)/5.4 ).toFixed(2);
+
+           if(actualPosition>0){
+               setUserCurrentLatitude(actualPosition);
+           }
+           else if(actualPosition>90){
+               setUserCurrentLatitude(90);
+
+           }
 
 
-  
-            // tamanho do mapa 662
-            //dividindo 662 por 180 obtenho 3.67
-            const actualPosition = ((e.clientX));
-            setUserCurrentLatitude(actualPosition);
+        }
 
-        
+
+
 
 
 
