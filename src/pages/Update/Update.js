@@ -136,7 +136,16 @@ const Update = ({ match, history }) => {
         setDisplayCurrentPosition(false);
     }
 
+   function setRedDotChosenPosition(e){
+       e.preventDefault();
+       setUserCurrentLongitude(actualXPosition);
+       setUserCurrentLatitude(actualYPosition);
+       setRedDotChosenXPosition(e.clientX);
+       setRedDotChosenYPosition(e.clientY);
 
+
+       setDisplayCurrentPosition(true);
+   }
 
     return (<>
         <div className="update-container">
@@ -230,10 +239,7 @@ const Update = ({ match, history }) => {
                                 }
                             }
                             onMouseLeave={(e) => handleMouseLeaving(e)}
-                            onClick={(e)=>{
-                                setRedDotChosenXPosition(e.clientX);
-                                setRedDotChosenYPosition(e.clientY);
-                            }}
+                            onClick={(e)=>setRedDotChosenPosition(e)}
                         >
                         </div>
                     </div>
