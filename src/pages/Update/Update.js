@@ -132,7 +132,10 @@ const Update = ({ match, history }) => {
         setRedPointYPosition(e.clientY);
     }
     function handleMouseLeaving(e) {
-        e.preventDefault()
+        e.preventDefault();
+        if(redDotChosenXposition&&redDotChosenYposition){
+            return setDisplayCurrentPosition(true);
+        }
         setDisplayCurrentPosition(false);
     }
 
