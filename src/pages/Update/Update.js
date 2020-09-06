@@ -19,8 +19,8 @@ const Update = ({ match, history }) => {
     const [redPointXposition, setRedPointXPosition] = useState(null);
     const [redPointYposition, setRedPointYPosition] = useState(null);
     const [showRedDot, setShowRedDot] = useState(false);
-    const [redDotChosenXposition, setRedDotChosenXPosition] = useState(null);
-    const [redDotChosenYposition, setRedDotChosenYPosition] = useState(null);
+    const [redDotChosenXposition, setRedDotChosenXPosition] = useState(false);
+    const [redDotChosenYposition, setRedDotChosenYPosition] = useState(false);
     const [actualXPosition, setActualXPosition] = useState(null);
     const [actualYPosition, setActualYPosition] = useState(null);
     const [isRedDotSet, setIsRedDotSet] = useState(false);
@@ -120,6 +120,8 @@ const Update = ({ match, history }) => {
         e.preventDefault();
         setRedPointXPosition(e.clientX);
         setRedPointYPosition(e.clientY);
+        setUserNewLocation(actualXPosition + ", " + actualYPosition)
+
     }
     function handleMouseLeaving(e) {
         e.preventDefault();
@@ -142,6 +144,7 @@ const Update = ({ match, history }) => {
             setRedDotChosenXPosition(true);
             setRedDotChosenYPosition(true);
             setDisplayCurrentPosition(true);
+            setUserNewLocation(actualXPosition+", "+actualYPosition)
         }else{
             setRedDotChosenXPosition(false);
             setRedDotChosenYPosition(false);
