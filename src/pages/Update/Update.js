@@ -27,17 +27,6 @@ const Update = ({ match, history }) => {
 
 
 
-
-    //    useEffect(()=>{
-    //        document.querySelector('')
-    //        document.querySelector('.map-area').addEventListener('mousemove', (e) => {
-    //            Xcoordinate.innerHTML = "Coordenada X: " + e.clientX;
-    //            Ycoordinate.innerHTML = "Coordenada Y: " + e.clientY;
-    //        })
-
-    //    },[])
-
-
     async function handleIdSearch(e) {
         e.preventDefault()
         if (userId !== match.params.id) {
