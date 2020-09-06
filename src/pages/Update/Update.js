@@ -18,11 +18,12 @@ const Update = ({ match, history }) => {
     const [mouseYCoordinate, setMouseYCoordinate] = useState(0);
     const [redPointXposition, setRedPointXPosition] = useState(null);
     const [redPointYposition, setRedPointYPosition] = useState(null);
-    const [showRedDot,setShowRedDot] = useState(false);
-    const [redDotChosenXposition,setRedDotChosenXPosition] = useState(null);
+    const [showRedDot, setShowRedDot] = useState(false);
+    const [redDotChosenXposition, setRedDotChosenXPosition] = useState(null);
     const [redDotChosenYposition, setRedDotChosenYPosition] = useState(null);
-    const [actualXPosition,setActualXPosition] = useState(null);
+    const [actualXPosition, setActualXPosition] = useState(null);
     const [actualYPosition, setActualYPosition] = useState(null);
+    const [isRedDotSet, setIsRedDotSet] = useState(false);
 
 
 
@@ -126,29 +127,39 @@ const Update = ({ match, history }) => {
         }
 
     }
-    function setRedPointPosition(e){
+    function setRedPointPosition(e) {
         e.preventDefault();
         setRedPointXPosition(e.clientX);
         setRedPointYPosition(e.clientY);
     }
     function handleMouseLeaving(e) {
         e.preventDefault();
-        if(redDotChosenXposition&&redDotChosenYposition){
+        if (redDotChosenXposition && redDotChosenYposition) {
             return setDisplayCurrentPosition(true);
         }
         setDisplayCurrentPosition(false);
+        setRedPointXPosition(0);
+        setRedPointYPosition(0);
+        setShowRedDot(false);
+
     }
 
-   function setRedDotChosenPosition(e){
-       e.preventDefault();
-       setUserCurrentLongitude(actualXPosition);
-       setUserCurrentLatitude(actualYPosition);
-       setRedDotChosenXPosition(e.clientX);
-       setRedDotChosenYPosition(e.clientY);
+    function setRedDotChosenPosition(e) {
+        e.preventDefault();
+        setIsRedDotSet(!isRedDotSet)
+        if (isRedDotSet) {
+            setUserCurrentLongitude(actualXPosition);
+            setUserCurrentLatitude(actualYPosition);
+            setRedDotChosenXPosition(true);
+            setRedDotChosenYPosition(true);
+            setDisplayCurrentPosition(true);
+        }else{
+            setRedDotChosenXPosition(false);
+            setRedDotChosenYPosition(false);
+            setDisplayCurrentPosition(true);
 
-
-       setDisplayCurrentPosition(true);
-   }
+        }
+    }
 
     return (<>
         <div className="update-container">
@@ -232,29 +243,29 @@ const Update = ({ match, history }) => {
                                 </span>) : ''}
                         </h1>
                         <div className="location-map"
-                            onMouseMove={(e) =>{
-                                if(!redDotChosenYposition&& !redDotChosenXposition){
+                            onMouseMove={(e) => {
+                                if (!redDotChosenYposition && !redDotChosenXposition) {
                                     handleMouseHover(e);
                                     setShowRedDot(true);
                                     setRedPointPosition(e);
 
                                 }
-                                }
+                            }
                             }
                             onMouseLeave={(e) => handleMouseLeaving(e)}
-                            onClick={(e)=>setRedDotChosenPosition(e)}
+                            onClick={(e) => setRedDotChosenPosition(e)}
                         >
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div className="red-point" style={{ 
-            display: `${showRedDot?'flex':'none'}`,
-            position: `absolute`, 
+        <div className="red-point" style={{
+            display: `${showRedDot ? 'flex' : 'none'}`,
+            position: `absolute`,
             top: `${redPointYposition ? redPointYposition + 'px' : '0px'}`,
-            left: `${redPointXposition?redPointXposition+'px':'0px'}`
-            }}></div>
+            left: `${redPointXposition ? redPointXposition + 'px' : '0px'}`
+        }}></div>
     </>
 
     )
