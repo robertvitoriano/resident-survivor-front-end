@@ -1,4 +1,4 @@
-Front End Test  Codeminer42  - Robert da Silva Vitoriano
+
 
 
 In order to run this project, you should first run:
