@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "https://zssn-backend-example.herokuapp.com/api",
+  baseURL: "http://localhost:4444",
 });
 export default api;

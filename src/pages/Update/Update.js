@@ -7,15 +7,11 @@ const Update = ({ match, history }) => {
     const [userName, setUserName] = useState('');
     const [userAge, setUserAge] = useState('');
     const [userGender, setUserGender] = useState('');
-    const [userPointFormatedLocation, SetUseserPointFormatedLocation] = useState('')
     const [userCurrentLongitude, setUserCurrentLongitude] = useState('');
     const [userCurrentLatitude, setUserCurrentLatitude] = useState('');
-    const [userNewLongitude, setUserNewLatitude] = useState('');
     const [displayCurrentPosition, setDisplayCurrentPosition] = useState(false);
     const [userNewLocation, setUserNewLocation] = useState('');
     const inputRef = useRef(null);
-    const [mouseXCoordinate, setMouseXCoordinate] = useState(0);
-    const [mouseYCoordinate, setMouseYCoordinate] = useState(0);
     const [redPointXposition, setRedPointXPosition] = useState(null);
     const [redPointYposition, setRedPointYPosition] = useState(null);
     const [showRedDot, setShowRedDot] = useState(false);

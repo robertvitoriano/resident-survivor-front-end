@@ -84,19 +84,15 @@ const Register = () => {
     e.preventDefault();
     const snd = new Audio(soundEffect);
     snd.play();
-    let locationFields = location.split(",");
-    let longitude = locationFields[0];
-    let latitude = locationFields[1];
-    let lonlat = `POINT (${longitude} ${latitude})`;
     if (itemsCounterState > 1) {
       setChosenItems(chosenItems.substring(0, chosenItems.length - 1));
     }
     try {
-      const response = await api.post("/people.json", {
+      const response = await api.post("/survivors", {
         name: name,
         age: age,
         gender: gender,
-        lonlat: lonlat,
+        location,
         items: chosenItems,
       });
       console.log(response)

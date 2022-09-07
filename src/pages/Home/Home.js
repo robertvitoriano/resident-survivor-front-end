@@ -38,8 +38,8 @@ const Home = ({ match }) => {
   );
    
   async function getInfectedPercetage() {
-    const response = await api.get("/report/infected");
-    const percentage = response.data.report.average_infected;
+    const response = await api.get("/reports/infected");
+    const percentage = response.data.info;
     setInfectedPercentage(percentage);
   }
   //gerttin average of infected survivors
@@ -48,8 +48,8 @@ const Home = ({ match }) => {
   },[survivorFlaggedDisplay]);
 
   async function getNonInfectedPercetage() {
-    const response = await api.get("/report/non_infected.json");
-    const percentage = response.data.report.average_healthy;
+    const response = await api.get("/reports/noninfected");
+    const percentage = response.data.info;
     setNonInfectedPercentage(percentage);
   }
   useEffect(() => {
